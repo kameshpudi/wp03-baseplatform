@@ -8,8 +8,8 @@ locals {
   tags                    = merge(local.global_vars.locals.tags, local.resource_tags)
   resource_name           = replace("${local.env_vars.locals.resource_prefix}${local.global_vars.locals.resource_names.aks_name}${local.config_vars.locals.stage}", "-", "")
   source_base_url         = "${local.global_vars.locals.source_base_url}//aks"
-  log_analytics_ws_name   = replace("${local.global_vars.locals.resource_names.log_analytics_ws_name}", "$PLACEHOLDER", "${local.region_vars.locals.infra_region}-${local.env_vars.locals.env}")
-  mock_log_analytics_name = replace("${local.global_vars.locals.resource_names.log_analytics_ws_name}", "$PLACEHOLDER", "${local.region_vars.locals.infra_region}-${local.env_vars.locals.env}")
+  # log_analytics_ws_name   = replace("${local.global_vars.locals.resource_names.log_analytics_ws_name}", "$PLACEHOLDER", "${local.region_vars.locals.infra_region}-${local.env_vars.locals.env}")
+  # mock_log_analytics_name = replace("${local.global_vars.locals.resource_names.log_analytics_ws_name}", "$PLACEHOLDER", "${local.region_vars.locals.infra_region}-${local.env_vars.locals.env}")
 }
 
 dependencies {
