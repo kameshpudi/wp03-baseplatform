@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: "Select the environment. Allowed values are 'INFRA_DEV', 'INFRA_INT', 'INFRA_PROD', 'AMERICAS_LAB', 'AMERICAS_DEV', 'AMERICAS_INT', 'AMERICAS_PROD','BBA_INT'"
+        description: "Select the environment. Allowed values are 'INFRA_DEV', 'INFRA_INT', 'INFRA_PROD'"
         required: true
         default: 'INFRA_DEV'
       tf-action:
