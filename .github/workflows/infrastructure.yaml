@@ -34,7 +34,7 @@ jobs:
 
   plan-or-show-infrastructure:
     needs: [ init ]
-    runs-on: ubuntu-latest
+    runs-on: ${{ needs.init.outputs.RUNNER_NAME }}
     environment: '${{ github.event.inputs.environment }}'
     steps:
       - uses: actions/checkout@v2
@@ -90,7 +90,7 @@ jobs:
 
   create-or-destroy-infrastructure:
     needs: [ plan-or-show-infrastructure, init ]
-    runs-on: ubuntu-latest
+    runs-on: ${{ needs.init.outputs.RUNNER_NAME }}
     environment: '${{ github.event.inputs.environment }}'
     steps:
       - uses: actions/checkout@v2
