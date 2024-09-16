@@ -12,9 +12,9 @@ locals {
   # mock_log_analytics_name = replace("${local.global_vars.locals.resource_names.log_analytics_ws_name}", "$PLACEHOLDER", "${local.region_vars.locals.infra_region}-${local.env_vars.locals.env}")
 }
 
-dependencies {
-  paths = ["${get_terragrunt_dir()}//../rg-compute", "${get_terragrunt_dir()}//../log-analytics"]
-}
+# dependencies {
+#   paths = ["${get_terragrunt_dir()}//../rg-compute", "${get_terragrunt_dir()}//../log-analytics"]
+# }
 
 dependency "rg" {
   config_path = "${get_terragrunt_dir()}//../rg-compute"
