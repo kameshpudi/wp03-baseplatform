@@ -1,0 +1,134 @@
+name: infrastructure
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select the environment. Allowed values are 'INFRA_DEV', 'INFRA_INT', 'INFRA_PROD', 'AMERICAS_LAB', 'AMERICAS_DEV', 'AMERICAS_INT', 'AMERICAS_PROD','BBA_INT'"
+        required: true
+        default: 'INFRA_DEV'
+      tf-action:
+        description: 'Select either to "create" or "destroy" the infrastructure'
+        required: true
+        default: 'create'
+
+env:
+  TERRAFORM_VERSION: 1.3.3
+  TERRAGRUNT_VERSION: 0.39.2
+
+
+jobs:
+  init:
+    runs-on: [ ubuntu-latest ]
+    outputs:
+        RUNNER_NAME: ${{ steps.setVars.outputs.RUNNER_NAME }}
+    steps:
+       - name: 'Set environment variables env development'
+         if: ${{ github.event.inputs.environment == 'INFRA_DEV' }}
+         run: |
+            echo "RUNNER_NAME=ubuntu-latest" >> $GITHUB_ENV
+       - name: 'Expose values'
+         id: 'setVars'
+         run: |
+            echo "::set-output name=RUNNER_NAME::${{ env.RUNNER_NAME }}"
+
+  plan-or-show-infrastructure:
+    needs: [ init ]
+    runs-on: ${{ needs.init.outputs.RUNNER_NAME }}
+    environment: '${{ github.event.inputs.environment }}'
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: elstudio/action-install-azure-cli@v1
+
+      - uses: terraform-linters/setup-tflint@v1
+        name: Setup TFLint
+        with:
+           tflint_version: v0.30.0
+
+      - name: Add TFlint Azure Rule Set
+        run: |
+          cd .github/config
+          tflint --init
+
+      - name: Install Terraform
+        uses: little-core-labs/install-terraform@v2.0.0
+        with:
+          version: ${{ env.TERRAFORM_VERSION }}
+
+      - name: Setup Terragrunt
+        uses: autero1/action-terragrunt@v1.1.0
+        with:
+          terragrunt_version: ${{ env.TERRAGRUNT_VERSION }}
+
+      - name: Interact with Terragrunt
+        run: terragrunt --version
+
+      - name: 'Plan infrastructure'
+        if: ${{ github.event.inputs.tf-action == 'create' }}
+        run: |
+          echo "Plan the infrastructure"
+          cd ${{ secrets.TERRAGRUNT_PATH }}
+          terragrunt run-all plan
+        env:
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+
+      - name: 'Show infrastructure'
+        if: ${{ github.event.inputs.tf-action == 'destroy' }}
+        run: |
+          echo "Show the infrastructure"
+          cd ${{ secrets.TERRAGRUNT_PATH }}
+          terragrunt run-all show
+        env:
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+
+  create-or-destroy-infrastructure:
+    needs: [ plan-or-show-infrastructure, init ]
+    runs-on: ${{ needs.init.outputs.RUNNER_NAME }}
+    environment: '${{ github.event.inputs.environment }}'
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: elstudio/action-install-azure-cli@v1
+      - name: Install Terraform
+        uses: little-core-labs/install-terraform@v2.0.0
+        with:
+          version: ${{ env.TERRAFORM_VERSION }}
+
+      - name: Setup Terragrunt
+        uses: autero1/action-terragrunt@v1.1.0
+        with:
+          terragrunt_version: ${{ env.TERRAGRUNT_VERSION }}
+
+      - name: Interact with Terragrunt
+        run: terragrunt --version
+      - name: 'Create infrastructure'
+        if: ${{ github.event.inputs.tf-action == 'create' }}
+        run: |
+            echo "Create the infrastructure"
+            cd ${{ secrets.TERRAGRUNT_PATH }}
+            terragrunt run-all apply --terragrunt-non-interactive
+        env:
+         ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+         ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+         ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+         ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+
+      - name: 'Destroy infrastructure'
+        if: ${{ github.event.inputs.tf-action == 'destroy' }}
+        run: |
+            echo "Destroy the infrastructure"
+            cd ${{ secrets.TERRAGRUNT_PATH }}
+            terragrunt run-all destroy --terragrunt-non-interactive
+        env:
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+
