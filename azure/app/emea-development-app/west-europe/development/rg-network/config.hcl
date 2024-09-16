@@ -1,3 +1,0 @@
-locals {
-  type = "network"
-}

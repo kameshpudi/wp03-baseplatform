@@ -11,18 +11,6 @@ locals {
   # subnet_ids      = local.env_vars.locals.subnet_ids
 }
 
-dependencies {
-  paths = ["${get_terragrunt_dir()}//../rg-persistence"]
-}
-
-dependency "rg" {
-  config_path = "${get_terragrunt_dir()}//../rg-persistence"
-  # Mock outputs in case resource is not existing. This allows to run terragrunt run-all plan or validate on non-existing
-  # resources. More information can be found here https://terragrunt.gruntwork.io/docs/features/execute-terraform-commands-on-multiple-modules-at-once/#dependencies-between-modules
-  mock_outputs = {
-    rg_name = "MOCK-aiqx-app-persistence-rg"
-  }
-}
 
 terraform {
   # Execute validation via tflint after a terraform plan or terraform validation was run
