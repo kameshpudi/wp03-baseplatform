@@ -25,15 +25,6 @@ dependency "rg" {
   }
 }
 
-dependency "loga" {
-  config_path = "${get_terragrunt_dir()}//../log-analytics"
-  # Mock outputs in case resource is not existing. This allows to run terragrunt run-all plan or validate on non-existing
-  # resources. More information can be found here https://terragrunt.gruntwork.io/docs/features/execute-terraform-commands-on-multiple-modules-at-once/#dependencies-between-modules
-  mock_outputs = {
-    log_analytics_ids = {
-    "${local.mock_log_analytics_name}" = "/subscriptions/ca11ff22-5653-4822-b4dd-46c8da92f22/resourcegroups/dummy-rg/providers/microsoft.operationalinsights/workspaces/dummy-workspace" }
-  }
-}
 
 terraform {
   # Execute validation via tflint after a terraform plan or terraform validation was run
