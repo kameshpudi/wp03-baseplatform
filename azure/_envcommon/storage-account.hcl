@@ -40,6 +40,6 @@ inputs = {
   ip_rules                                           = local.ip_rules
   subnet_ids                                         = local.subnet_ids
   storage_replication_type                           = "LRS"
-  storage_account_allowed_ips                        = local.ip_rules
-  storage_account_allowed_virtual_network_subnet_ids = local.subnet_ids
+  # storage_account_allowed_ips                        = local.ip_rules
+  # storage_account_allowed_virtual_network_subnet_ids = local.subnet_ids
 }

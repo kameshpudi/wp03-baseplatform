@@ -27,7 +27,7 @@ inputs = {
   location                                           = local.region_vars.locals.location
   sku                                                = "Premium"
   tags                                               = local.tags
-  storage_account_allowed_ips                        = local.ip_rules
-  storage_account_allowed_virtual_network_subnet_ids = local.subnet_ids
+  # storage_account_allowed_ips                        = local.ip_rules
+  # storage_account_allowed_virtual_network_subnet_ids = local.subnet_ids
 }
 
