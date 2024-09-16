@@ -7,8 +7,8 @@ locals {
   tags            = merge(local.global_vars.locals.tags, local.resource_tags)
   resource_name   = replace("${local.env_vars.locals.resource_prefix}${local.global_vars.locals.resource_names.storage_account_name}", "-", "")
   source_base_url = "${local.global_vars.locals.source_base_url}//storage_account"
-  ip_rules        = local.global_vars.locals.networking["${local.region_vars.locals.infra_region}"]
-  subnet_ids      = local.env_vars.locals.subnet_ids
+  # ip_rules        = local.global_vars.locals.networking["${local.region_vars.locals.infra_region}"]
+  # subnet_ids      = local.env_vars.locals.subnet_ids
 }
 
 dependencies {
