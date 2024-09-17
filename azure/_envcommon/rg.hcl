@@ -10,13 +10,13 @@ locals {
   source_base_url = "${local.global_vars.locals.source_base_url}//rg"
 }
 
-terraform {
-  # Execute validation via tflint after a terraform plan or terraform validation was run
-  after_hook "tflint rg" {
-    commands = ["validate", "plan"]
-    execute  = ["tflint"]
-  }
-}
+# terraform {
+#   # Execute validation via tflint after a terraform plan or terraform validation was run
+#   after_hook "tflint rg" {
+#     commands = ["validate", "plan"]
+#     execute  = ["tflint"]
+#   }
+# }
 
 inputs = {
   rg_name  = replace("${local.resource_name}", "$PLACEHOLDER", "${local.config_vars.locals.type}")

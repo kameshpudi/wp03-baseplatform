@@ -46,18 +46,8 @@ jobs:
         with:
            tflint_version: v0.30.0
 
-      # - name: Add TFlint Azure Rule Set
-      #   run: |
-      #     cd .github/config
-      #     tflint --init
       - name: Add TFlint Azure Rule Set
         run: |
-          mkdir -p .github/config
-          echo 'plugin "azurerm" {' > .github/config/.tflint.hcl
-          echo '  enabled = true' >> .github/config/.tflint.hcl
-          echo '  version = "0.15.0"' >> .github/config/.tflint.hcl
-          echo '  source  = "github.com/terraform-linters/tflint-ruleset-azurerm"' >> .github/config/.tflint.hcl
-          echo '}' >> .github/config/.tflint.hcl
           cd .github/config
           tflint --init
 
