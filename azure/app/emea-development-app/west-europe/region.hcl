@@ -1,5 +1,5 @@
 locals {
-  location      = "westus"
+  location      = "eastus"
   region_prefix = "weu"
   infra_region    = "emea"
 }
