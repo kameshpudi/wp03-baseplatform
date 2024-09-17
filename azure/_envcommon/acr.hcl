@@ -37,6 +37,6 @@ inputs = {
   acr_name   = local.resource_name
   location   = local.region_vars.locals.location
   tags       = local.tags
-  ip_rules   = local.ip_rules
-  subnet_ids = local.subnet_ids
+  # ip_rules   = local.ip_rules
+  # subnet_ids = local.subnet_ids
 }
