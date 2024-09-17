@@ -53,7 +53,7 @@ inputs = {
   enable_oms_agent             = true
   only_critical_addons_enabled = true
   # log_analytics_workspace_id   = dependency.loga.outputs.log_analytics_ids["${local.log_analytics_ws_name}"]
-  pod_cidr_range               = "10.0.0.0/28"
+  pod_cidr_range               = "10.244.0.0/16"
   subnet_id                    = ""
   additional_node_pools        = {}
 }
