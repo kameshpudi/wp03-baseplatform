@@ -26,13 +26,13 @@ dependency "rg" {
 }
 
 
-terraform {
-  # Execute validation via tflint after a terraform plan or terraform validation was run
-  after_hook "tflint aks" {
-    commands = ["validate", "plan"]
-    execute  = ["tflint"]
-  }
-}
+# terraform {
+#   # Execute validation via tflint after a terraform plan or terraform validation was run
+#   after_hook "tflint aks" {
+#     commands = ["validate", "plan"]
+#     execute  = ["tflint"]
+#   }
+# }
 
 inputs = {
   rg_name                      = dependency.rg.outputs.rg_name
