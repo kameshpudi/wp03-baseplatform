@@ -31,6 +31,8 @@ inputs = {
       os_disk_size_gb     = 64
     }
   }
+  private_cluster_enabled     = false
+  identity_type               = "service_principal"
 }
 
 # Need for blue green deployment of an AKS
