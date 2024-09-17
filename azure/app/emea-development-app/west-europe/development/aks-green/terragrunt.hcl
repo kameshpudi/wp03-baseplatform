@@ -33,6 +33,8 @@ inputs = {
   }
   private_cluster_enabled     = false
   identity_type               = "service_principal"
+  principal_id                = include.env.locals.env_vars.locals.principal_id
+  principal_secret            = include.env.locals.env_vars.locals.principal_secret
 }
 
 # Need for blue green deployment of an AKS
