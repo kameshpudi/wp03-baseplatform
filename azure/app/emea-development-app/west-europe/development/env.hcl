@@ -7,9 +7,9 @@ locals {
   skip_deploy_aks_green      = false
   skip_deploy_aks_blue       = true
   subnet_id_aks_green        = "/subscriptions/e42f1bc7-b2b7-4d56-8ccf-7a3bd1549a00/resourceGroups/VNET-SPOKE-CAR-RG/providers/Microsoft.Network/virtualNetworks/VNET-SPOKE-CAR-100/subnets/aks-green"
-  subnet_id_aks_blue         = "/subscriptions/e42f1bc7-b2b7-4d56-8ccf-7a3bd1549a00/resourceGroups/VNET-SPOKE-CAR-RG/providers/Microsoft.Network/virtualNetworks/VNET-SPOKE-CAR-100/subnets/aks-green"
+  subnet_id_runner         = "/subscriptions/e42f1bc7-b2b7-4d56-8ccf-7a3bd1549a00/resourceGroups/VNET-SPOKE-CAR-RG/providers/Microsoft.Network/virtualNetworks/VNET-SPOKE-CAR-100/subnets/aks-green"
   
-  subnet_ids                 = tolist([local.subnet_id_aks_green, local.subnet_id_aks_blue])  
+  subnet_ids                 = tolist([local.subnet_id_aks_green, local.subnet_id_runner])  
   sp_iac_object_id           = "889b257a-edc9-4877-a9d7-c4cd0065fc46"
   aks_load_balancer_ip       = "10.11.20.57"
   private_dns_zone_name      = "test-dev.azure.cloud.com"
