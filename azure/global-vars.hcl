@@ -15,7 +15,9 @@ locals {
     rg_name_base          = "${local.app_name}-$PLACEHOLDER-rg" # "$PLACEHOLDER" will be replaced based upon purpose. Don't change this
     acr_name              = "${local.app_name}acr"
     aks_name              = "${local.app_name}aks"
+    log_analytics_ws_name = "${local.app_name}-log-analytics-ws-$PLACEHOLDER" # "$PLACEHOLDER" will be replaced based upon purpose. Don't change this
     storage_account_name  = "${local.app_name}st"
+    private_endpoint_name = "${local.app_name}-pvte"
   }
 
   networking = {    
