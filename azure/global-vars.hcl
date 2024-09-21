@@ -37,37 +37,37 @@ locals {
     }
   }
   private_dns_a_records = {
-    services = {
-      dns_a_record_name = "services"
-      records           = ["$PLACEHOLDER"]
-    },
-    argocd = {
-      dns_a_record_name = "argocd"
-      records           = ["$PLACEHOLDER"]
-    },
-    monitoring = {
-      dns_a_record_name = "monitoring"
-      records           = ["$PLACEHOLDER"]
-    },
-    rabbitmq = {
-      dns_a_record_name = "rabbitmq"
-      records           = ["$PLACEHOLDER"]
-    },
-    rabbitmq-events = {
-      dns_a_record_name = "rabbitmq-events"
-      records           = ["$PLACEHOLDER"]
-    },
-    pushgateway = {
-      dns_a_record_name = "pushgateway"
-      records           = ["$PLACEHOLDER"]
-    },
-    prometheus = {
-      dns_a_record_name = "prometheus"
-      records           = ["$PLACEHOLDER"]
-    },
-    sftp = {
-      dns_a_record_name = "sftp"
-      records           = ["$PLACEHOLDER"]
-    }
+    # services = {
+    #   dns_a_record_name = "services"
+    #   records           = ["$PLACEHOLDER"]
+    # },
+    # argocd = {
+    #   dns_a_record_name = "argocd"
+    #   records           = ["$PLACEHOLDER"]
+    # },
+    # monitoring = {
+    #   dns_a_record_name = "monitoring"
+    #   records           = ["$PLACEHOLDER"]
+    # },
+    # rabbitmq = {
+    #   dns_a_record_name = "rabbitmq"
+    #   records           = ["$PLACEHOLDER"]
+    # },
+    # rabbitmq-events = {
+    #   dns_a_record_name = "rabbitmq-events"
+    #   records           = ["$PLACEHOLDER"]
+    # },
+    # pushgateway = {
+    #   dns_a_record_name = "pushgateway"
+    #   records           = ["$PLACEHOLDER"]
+    # },
+    # prometheus = {
+    #   dns_a_record_name = "prometheus"
+    #   records           = ["$PLACEHOLDER"]
+    # },
+    # sftp = {
+    #   dns_a_record_name = "sftp"
+    #   records           = ["$PLACEHOLDER"]
+    # }
   }
 }
