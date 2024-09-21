@@ -2,7 +2,7 @@ locals {
 
   app_name = "infra" # $REPLACE: Adapt to your needs. Changing this after resource creation forces a new resource to be created!
 
-  source_base_url = "git::https://github.com/kameshpudi/tf-modules.git"
+  source_base_url = "git::ssh://git@github.com:kameshpudi/tf-modules.git"
   
   tags = {
     "name"            = "${local.app_name}"
