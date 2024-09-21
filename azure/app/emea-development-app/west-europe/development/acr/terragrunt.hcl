@@ -10,3 +10,7 @@ include "env" {
 terraform {
   source = "${include.env.locals.source_base_url}?ref=${include.env.locals.module_version}"  
 }
+
+inputs = {
+  ip_rules = concat(include.env.locals.ip_rules, ["${cidrsubnet(var.vnet_address_space, 8, 0)}"])
+}

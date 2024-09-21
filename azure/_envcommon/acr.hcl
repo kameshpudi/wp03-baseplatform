@@ -20,7 +20,7 @@ dependency "rg" {
   # Mock outputs in case resource is not existing. This allows to run terragrunt run-all plan or validate on non-existing
   # resources. More information can be found here https://terragrunt.gruntwork.io/docs/features/execute-terraform-commands-on-multiple-modules-at-once/#dependencies-between-modules
   mock_outputs = {
-    rg_name = "MOCK-aiqx-app-persistence-rg"
+    rg_name = "MOCK-test-app-persistence-rg"
   }
 }
 
@@ -37,6 +37,6 @@ inputs = {
   acr_name   = local.resource_name
   location   = local.region_vars.locals.location
   tags       = local.tags
-  # ip_rules   = local.ip_rules
-  # subnet_ids = local.subnet_ids
+  ip_rules   = local.ip_rules
+  subnet_ids = local.subnet_ids
 }
