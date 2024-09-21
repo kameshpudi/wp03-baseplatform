@@ -41,10 +41,9 @@ jobs:
 
       - name: Setup up deploy key
         run: |
-          mkdir -p ~/.ssh
-
-          echo "${{ secrets.IAC_DEPLOY_KEY }}" > ~/.ssh/${{ env.DEPLOY_KEY_NAME }}
-          chmod 600 ~/.ssh/${{ env.DEPLOY_KEY_NAME }}
+          
+          echo "${{ secrets.IAC_DEPLOY_KEY }}" > /home/runner/.ssh/${{ env.DEPLOY_KEY_NAME }}
+          chmod 600 /home/runner/.ssh/${{ env.DEPLOY_KEY_NAME }}
 
       - uses: elstudio/action-install-azure-cli@v1
 
