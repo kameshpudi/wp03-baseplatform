@@ -13,6 +13,7 @@ locals {
   resource_names = {
     tf_backend_name       = "${local.app_name}-iac-tfstate"
     rg_name_base          = "${local.app_name}-$PLACEHOLDER-rg" # "$PLACEHOLDER" will be replaced based upon purpose. Don't change this
+    kv_name               = "${local.app_name}kv"
     acr_name              = "${local.app_name}acr"
     aks_name              = "${local.app_name}aks"
     log_analytics_ws_name = "${local.app_name}-log-analytics-ws-$PLACEHOLDER" # "$PLACEHOLDER" will be replaced based upon purpose. Don't change this
