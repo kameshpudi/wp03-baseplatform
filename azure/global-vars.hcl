@@ -21,7 +21,9 @@ locals {
     private_endpoint_name = "${local.app_name}-pvte"
   }
 
-  networking = {    
+  networking = {
+    de = [
+    ]  
   }
 
   aks = {
