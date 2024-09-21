@@ -41,7 +41,7 @@ jobs:
 
       - name: Setup up deploy key
         run: |
-          
+          mkdir -p /home/runner/.ssh
           echo "${{ secrets.IAC_DEPLOY_KEY }}" > /home/runner/.ssh/${{ env.DEPLOY_KEY_NAME }}
           chmod 600 /home/runner/.ssh/${{ env.DEPLOY_KEY_NAME }}
 
