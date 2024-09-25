@@ -15,9 +15,9 @@ inputs = {
   kubernetes_version   = "1.29.7"
   orchestrator_version = "1.29.7"
   node_pool_vm_size    = "Standard_DS2_v2"
-  node_pool_count      = 3
-  min_count            = 3
-  max_count            = 5
+  node_pool_count      = 1
+  min_count            = 1
+  max_count            = 3
   subnet_id            = include.env.locals.env_vars.locals.subnet_id_aks_green
   additional_node_pools = {
     "infracore" = {
@@ -31,7 +31,7 @@ inputs = {
       os_disk_size_gb     = 64
     }
   }
-  private_cluster_enabled     = false
+  private_cluster_enabled     = true
   identity_type               = "service_principal"
   principal_id                = include.env.locals.env_vars.locals.principal_id
   principal_secret            = include.env.locals.env_vars.locals.principal_secret
