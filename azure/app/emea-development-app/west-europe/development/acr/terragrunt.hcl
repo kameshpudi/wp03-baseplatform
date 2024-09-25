@@ -12,5 +12,5 @@ terraform {
 }
 
 inputs = {
-  ip_rules = concat(include.env.locals.ip_rules, ["198.61.40.120", "198.84.50.44"])
+  ip_rules = concat(include.env.locals.ip_rules, ["198.61.40.120", "198.84.50.44","20.97.191.61"])
 }
