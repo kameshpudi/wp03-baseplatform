@@ -23,7 +23,7 @@ locals {
 
   networking = {
     de = [
-      "20.97.191.61"
+      # "20.97.191.61" # to allow access from Azure DevOps/GitHub runners to the AKS cluster etc
     ]  
   }
 

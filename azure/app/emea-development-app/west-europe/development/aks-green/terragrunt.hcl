@@ -31,7 +31,7 @@ inputs = {
       os_disk_size_gb     = 64
     }
   }
-  private_cluster_enabled     = true
+  private_cluster_enabled     = false
   identity_type               = "service_principal"
   principal_id                = include.env.locals.env_vars.locals.principal_id
   principal_secret            = include.env.locals.env_vars.locals.principal_secret
