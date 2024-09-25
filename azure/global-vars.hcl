@@ -23,6 +23,7 @@ locals {
 
   networking = {
     de = [
+      "20.97.191.61"
     ]  
   }
 
